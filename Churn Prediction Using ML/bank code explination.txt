@@ -1,0 +1,32 @@
+1. Problem Statement
+The goal is to predict customer churn in a bank dataset using a deep learning model.
+Churn prediction is important for businesses to retain customers by identifying those likely to leave.
+2. Data Preprocessing
+Loaded Data: Used pandas to read Final_bank.csv and explored it using .head().
+Correlation Heatmap: Used seaborn to visualize feature relationships, helping in feature selection.
+Feature & Target Selection:
+x = df.drop('Churn', axis=1) (independent variables)
+y = df['Churn'] (target variable)
+3. Data Splitting & Scaling
+Split the dataset into training (80%) and testing (20%) using train_test_split.
+Standardized features using StandardScaler() for better convergence during model training.
+Expanded dimensions (np.expand_dims) to fit the LSTM input requirement (samples, timesteps, features).
+4. Model Architecture
+Used LSTM (Long Short-Term Memory), a type of RNN, because it captures sequential patterns in data.
+Model layers:
+LSTM (64 units, ReLU activation) – Extracts temporal dependencies.
+Dense (32, ReLU) → Dense (16, ReLU) – Fully connected layers for feature learning.
+Dense (1, Sigmoid) – Outputs probability for binary classification.
+Loss Function: binary_crossentropy (since it’s a classification problem).
+Optimizer: adam (adaptive learning for better optimization).
+Metrics: accuracy (to evaluate model performance).
+5. Model Training & Evaluation
+Trained for 10 epochs with batch size = 32.
+Evaluated on test data, printing accuracy & loss to measure model performance.
+6. Model Saving
+Used pickle to save the trained model for later use (churn_model_pickle).
+7. Potential Improvements
+Tune hyperparameters (e.g., number of LSTM units, dropout).
+Use more epochs and early stopping to prevent overfitting.
+Try alternative architectures like GRU or Transformer-based models.
+Perform feature engineering to enhance model performance.
